@@ -1,0 +1,722 @@
+/* =========================
+   WILD CAMP 4 - MAIN STYLE
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0d0d0d;
+  color: #ffffff;
+}
+
+/* =========================
+   HOME PAGE
+========================= */
+
+.hero {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 91, 0, 0.22),
+      transparent 35%
+    ),
+    #0d0d0d;
+}
+
+.event-tag {
+  color: #ff5b00;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(52px, 12vw, 110px);
+  font-weight: 900;
+  line-height: 0.9;
+  color: #ffffff;
+}
+
+.subtitle {
+  color: #ff5b00;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 20px 0 45px;
+}
+
+.event-info {
+  width: 100%;
+  max-width: 700px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.info-box {
+  background: #181818;
+  border: 1px solid #333333;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+}
+
+.info-box span {
+  display: block;
+  color: #ff5b00;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.info-box strong {
+  font-size: 16px;
+}
+
+.register-button {
+  width: 100%;
+  max-width: 700px;
+  background: #ff5b00;
+  color: #ffffff;
+  padding: 18px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+
+.register-button:hover {
+  background: #ff7626;
+  transform: translateY(-2px);
+}
+
+.status-link {
+  margin-top: 22px;
+  color: #aaaaaa;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid #555555;
+  padding-bottom: 3px;
+}
+
+.status-link:hover {
+  color: #ff5b00;
+}
+
+
+/* =========================
+   REGISTRATION PAGE
+========================= */
+
+.registration-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 91, 0, 0.18),
+      transparent 30%
+    ),
+    #0d0d0d;
+  padding: 40px 20px 80px;
+}
+
+.registration-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  color: #aaaaaa;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 45px;
+}
+
+.back-link:hover {
+  color: #ff5b00;
+}
+
+.registration-header {
+  margin-bottom: 30px;
+}
+
+.registration-title {
+  font-size: clamp(42px, 10vw, 72px);
+  font-weight: 900;
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+
+.registration-description {
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: bold;
+}
+
+.fee-card {
+  background: #ff5b00;
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fee-card span {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.fee-card strong {
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-group label span {
+  color: #ff5b00;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 17px;
+  background: #181818;
+  color: #ffffff;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: #666666;
+}
+
+.form-group input:focus {
+  border-color: #ff5b00;
+}
+
+.form-group input[type="file"] {
+  cursor: pointer;
+}
+
+.form-group small {
+  display: block;
+  color: #777777;
+  margin-top: 8px;
+}
+
+.form-section-title {
+  color: #ff5b00;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 15px 0;
+  margin: 35px 0 20px;
+  border-bottom: 1px solid #333333;
+}
+
+.payment-info {
+  background: #181818;
+  border: 1px solid #333333;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 25px;
+}
+
+.payment-info > p {
+  color: #aaaaaa;
+  margin-bottom: 5px;
+}
+
+.payment-info > strong {
+  color: #ff5b00;
+  font-size: 32px;
+}
+
+.bank-info {
+  border-top: 1px solid #333333;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.bank-info span {
+  color: #888888;
+  font-size: 12px;
+}
+
+.bank-info p {
+  margin-top: 8px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #aaaaaa;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 30px 0;
+  cursor: pointer;
+}
+
+.checkbox-group input {
+  margin-top: 4px;
+  accent-color: #ff5b00;
+}
+
+.submit-button {
+  width: 100%;
+  border: none;
+  border-radius: 50px;
+  padding: 19px;
+  background: #ff5b00;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-button:hover {
+  background: #ff7626;
+  transform: translateY(-2px);
+}
+
+.form-note {
+  color: #777777;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.7;
+  margin-top: 25px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 45px 18px;
+  }
+
+  .event-info {
+    grid-template-columns: 1fr;
+  }
+
+  .info-box {
+    padding: 17px;
+  }
+
+  .registration-page {
+    padding: 25px 16px 60px;
+  }
+
+  .registration-title {
+    font-size: 42px;
+  }
+
+  .fee-card {
+    padding: 18px;
+  }
+}
+
+/* =========================
+   CHECK STATUS PAGE
+========================= */
+
+.status-page {
+    min-height: 100vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-container {
+    width: 100%;
+    max-width: 700px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 40px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.back-link:hover {
+    color: #ff5a00;
+}
+
+.status-page .event-tag {
+    color: #ff5a00;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.status-page h1 {
+    font-size: 72px;
+    line-height: 0.9;
+    margin: 0 0 25px;
+    color: #ffffff;
+}
+
+.status-description {
+    color: #b8b8b8;
+    font-size: 17px;
+    margin-bottom: 40px;
+}
+
+.status-search-box {
+    padding: 30px;
+    border: 1px solid #444;
+    border-radius: 18px;
+    background: #181818;
+}
+
+.status-search-box label {
+    display: block;
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.status-search-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px;
+    margin-bottom: 18px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    background: #101010;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+}
+
+.status-search-box input:focus {
+    border-color: #ff5a00;
+}
+
+#checkStatusButton {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 50px;
+    background: #ff5a00;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#checkStatusButton:hover {
+    opacity: 0.9;
+}
+
+.status-result {
+    margin-top: 25px;
+    color: #ffffff;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .status-page {
+        padding: 30px 16px;
+    }
+
+    .status-page h1 {
+        font-size: 48px;
+    }
+
+    .status-search-box {
+        padding: 20px;
+    }
+}
+
+
+/* Status Card */
+.status-card {
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-card.approved {
+    border-left: 5px solid #22c55e;
+    background: rgba(34, 197, 94, 0.12);
+}
+
+.status-card.pending {
+    border-left: 5px solid #ff6a00;
+    background: rgba(255, 106, 0, 0.12);
+}
+
+.status-card.rejected {
+    border-left: 5px solid #ef4444;
+    background: rgba(239, 68, 68, 0.12);
+}
+/* =========================
+   ADMIN PAGE
+========================= */
+
+
+
+
+.admin-page {
+    min-height: 100vh;
+    padding: 60px 8%;
+    background: #0d0d0d;
+    color: #ffffff;
+}
+
+.admin-label {
+    color: #ff6500;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.admin-page h1 {
+    font-size: 64px;
+    line-height: 0.9;
+    margin: 15px 0 25px;
+}
+
+.admin-description {
+    color: #cccccc;
+    margin-bottom: 30px;
+}
+
+#loadRegistrationsButton {
+    width: 100%;
+    max-width: 500px;
+    padding: 18px;
+    border: none;
+    border-radius: 50px;
+    background: #ff6500;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#loadRegistrationsButton:hover {
+    opacity: 0.9;
+}
+
+#adminMessage {
+    margin-top: 25px;
+}
+
+#registrationList {
+    margin-top: 30px;
+}
+
+/* =========================
+   ADMIN REGISTRATION CARD
+========================= */
+
+.registration-item {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 5px solid #ff6500;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.registration-item strong {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.registration-item:hover {
+  border-color: #ff6500;
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+/* ================================
+   WILD CAMP 4 - CHECK-IN PAGE
+================================ */
+
+.checkin-container {
+  width: 90%;
+  max-width: 520px;
+  margin: 70px auto;
+  padding: 45px 40px;
+  background: #ffffff;
+  border: 2px solid #111111;
+  box-shadow: 10px 10px 0 #111111;
+  box-sizing: border-box;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 35px;
+  color: #111111;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  opacity: 0.6;
+}
+
+.event-tag {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.checkin-container h1 {
+  margin: 0;
+  font-size: clamp(48px, 10vw, 82px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+}
+
+.checkin-description {
+  margin: 22px 0 35px;
+  color: #555555;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.checkin-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkin-box label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.checkin-box input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #111111;
+  background: #ffffff;
+  color: #111111;
+  font-size: 17px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.checkin-box input:focus {
+  box-shadow: 4px 4px 0 #111111;
+}
+
+.checkin-box button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 17px;
+  border: 2px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.checkin-box button:hover {
+  background: #ffffff;
+  color: #111111;
+}
+
+.checkin-box button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.checkin-message {
+  margin-top: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .checkin-container {
+    width: calc(100% - 32px);
+    margin: 30px auto;
+    padding: 32px 24px;
+    box-shadow: 6px 6px 0 #111111;
+  }
+
+  .back-link {
+    margin-bottom: 28px;
+  }
+
+  .checkin-container h1 {
+    font-size: 52px;
+  }
+}
+.checkin-container h1 {
+  display: block;
+  color: #1f2937;
+  font-size: 52px;
+  font-weight: 800;
+  margin: 25px 0 15px;
+  line-height: 1;
+}
+.checkin-message {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.checkin-message p {
+  margin: 0;
+  color: #1f2937;
+}

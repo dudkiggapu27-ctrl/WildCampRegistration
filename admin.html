@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wild Camp 4 - Admin</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="admin-page">
+
+        <p class="admin-label">WILD CAMP 4</p>
+
+        <h1>ADMIN<br>DASHBOARD</h1>
+
+        <p class="admin-description">
+            จัดการข้อมูลผู้ลงทะเบียน
+        </p>
+
+        <button id="loadRegistrationsButton">
+            LOAD REGISTRATIONS
+        </button>
+
+        <div id="adminMessage"></div>
+
+        <div id="registrationList">
+            <!-- รายชื่อผู้สมัครจะแสดงตรงนี้ -->
+        </div>
+
+    </main>
+
+
+<script>
+ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwa8bTTKCYmLOoT17M51Wicc9cQTQ82Zl-GXM0C60MF7WMBYRLGoHmYK4hxLQq-NktW/exec";
+
+const loadRegistrationsButton =
+  document.getElementById("loadRegistrationsButton");
+
+const adminMessage =
+  document.getElementById("adminMessage");
+
+const registrationList =
+  document.getElementById("registrationList");
+
+loadRegistrationsButton.addEventListener("click", async function () {
+  adminMessage.innerHTML = "<p>กำลังโหลดรายชื่อผู้สมัคร...</p>";
+  registrationList.innerHTML = "";
+  loadRegistrationsButton.disabled = true;
+
+  try {
+    const response = await fetch(WEB_APP_URL + "?action=load");
+    const data = await response.json();
+
+    console.log(data);
+
+    if (!data.success) {
+      adminMessage.innerHTML =
+        "<p>เกิดข้อผิดพลาด: " + (data.message || "ไม่สามารถโหลดข้อมูลได้") + "</p>";
+      return;
+    }
+
+    adminMessage.innerHTML =
+      "<p>พบผู้สมัคร " + data.registrations.length + " รายการ</p>";
+
+    data.registrations.forEach(function (registration) {
+      const div = document.createElement("div");
+      div.className = "registration-item";
+
+      div.innerHTML = `
+  <strong>${registration.firstName || ""} ${registration.lastName || ""}</strong><br>
+  Registration ID: ${registration.registrationId || "-"}<br>
+  สถานะ: ${registration.status || "-"}<br><br>
+
+  <button class="approve-btn">
+    APPROVE
+  </button>
+
+  <button class="reject-btn">
+    REJECT
+  </button>
+`;
+
+      registrationList.appendChild(div);
+      
+
+const approveButton = div.querySelector(".approve-btn");
+const rejectButton = div.querySelector(".reject-btn");
+
+approveButton.addEventListener("click", function () {
+  updateStatus(registration.registrationId, "APPROVED");
+});
+
+rejectButton.addEventListener("click", function () {
+  updateStatus(registration.registrationId, "REJECTED");
+});
+
+});
+    
+
+  } catch (error) {
+    console.error(error);
+    adminMessage.innerHTML =
+      "<p>เกิดข้อผิดพลาดในการโหลดข้อมูล</p>";
+  } finally {
+    loadRegistrationsButton.disabled = false;
+  }
+});
+async function updateStatus(registrationId, status) {
+  try {
+    const response = await fetch(WEB_APP_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        action: "updateStatus",
+        registrationId: registrationId,
+        status: status
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert("เปลี่ยนสถานะเป็น " + status + " สำเร็จ");
+      loadRegistrationsButton.click();
+    } else {
+      alert("เกิดข้อผิดพลาด: " + data.message);
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("ไม่สามารถเปลี่ยนสถานะได้");
+  }
+}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Register | Wild Camp 4</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <main class="registration-page">
+
+    <div class="registration-container">
+
+      <a href="index.html" class="back-link">
+        ← BACK
+      </a>
+
+      <div class="registration-header">
+        <p class="event-tag">WILD CAMP 4</p>
+
+        <h1 class="registration-title">
+          REGISTRATION
+        </h1>
+
+        <p class="registration-description">
+          7–8 NOVEMBER 2026<br>
+          CONNEXCAMP • SARABURI
+        </p>
+      </div>
+
+
+      <div class="fee-card">
+        <span>REGISTRATION FEE</span>
+        <strong>299 THB</strong>
+      </div>
+
+
+      <form id="registrationForm">
+
+        <div class="form-group">
+          <label for="firstName">
+            ชื่อ <span>*</span>
+          </label>
+
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="กรอกชื่อ"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="lastName">
+            นามสกุล <span>*</span>
+          </label>
+
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="กรอกนามสกุล"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="phone">
+            เบอร์โทรศัพท์ <span>*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="เช่น 0812345678"
+            required
+          >
+        </div>
+
+
+        <div class="form-section-title">
+          EMERGENCY CONTACT
+        </div>
+
+
+        <div class="form-group">
+          <label for="emergencyName">
+            ชื่อผู้ติดต่อฉุกเฉิน <span>*</span>
+          </label>
+
+          <input
+            type="text"
+            id="emergencyName"
+            name="emergencyName"
+            placeholder="ชื่อผู้ติดต่อฉุกเฉิน"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="emergencyPhone">
+            เบอร์โทรผู้ติดต่อฉุกเฉิน <span>*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="emergencyPhone"
+            name="emergencyPhone"
+            placeholder="เช่น 0812345678"
+            required
+          >
+        </div>
+
+
+        <div class="form-section-title">
+          PAYMENT
+        </div>
+
+
+        <div class="payment-info">
+          <p>ค่าสมัคร</p>
+          <strong>299 บาท</strong>
+
+          <div class="bank-info">
+    <span>รายละเอียดบัญชีสำหรับโอนเงิน</span>
+    <p>
+        ธนาคารกสิกรไทย<br>
+        เลขที่บัญชี: <strong>146-1-23796-3</strong><br>
+        ชื่อบัญชี: มานพ อาบัส
+    </p>
+</div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="paymentSlip">
+            อัปโหลดสลิปการโอนเงิน <span>*</span>
+          </label>
+
+          <input
+            type="file"
+            id="paymentSlip"
+            name="paymentSlip"
+            accept="image/*"
+            required
+          >
+
+          <small>
+            รองรับไฟล์รูปภาพ JPG, PNG
+          </small>
+        </div>
+
+
+        <label class="checkbox-group">
+
+          <input
+            type="checkbox"
+            id="agreement"
+            required
+          >
+
+          <span>
+            ข้าพเจ้ายืนยันว่าข้อมูลที่กรอกถูกต้อง
+            และยอมรับเงื่อนไขการเข้าร่วมกิจกรรม
+          </span>
+
+        </label>
+
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          SUBMIT REGISTRATION
+        </button>
+
+      </form>
+
+
+      <p class="form-note">
+        หลังจากส่งข้อมูล เจ้าหน้าที่จะตรวจสอบสลิปการชำระเงิน
+        และอนุมัติการลงทะเบียน
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <script>
+  const form = document.getElementById("registrationForm");
+
+  // วาง Web App URL ที่คัดลอกมาจาก Google Apps Script ตรงนี้
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwa8bTTKCYmLOoT17M51Wicc9cQTQ82Zl-GXM0C60MF7WMBYRLGoHmYK4hxLQq-NktW/exec';
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const paymentSlip = document.getElementById("paymentSlip");
+
+    if (!paymentSlip.files.length) {
+      alert("กรุณาอัปโหลดสลิปการโอนเงิน");
+      return;
+    }
+
+    const file = paymentSlip.files[0];
+
+    // จำกัดขนาดไฟล์ไม่เกิน 5 MB
+    if (file.size > 5 * 1024 * 1024) {
+      alert("ไฟล์สลิปต้องมีขนาดไม่เกิน 5 MB");
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "กำลังส่งข้อมูล...";
+
+    try {
+      // แปลงรูปสลิปเป็น Base64
+      const slipBase64 = await fileToBase64(file);
+
+      const data = {
+        firstName: document.getElementById("firstName").value.trim(),
+        lastName: document.getElementById("lastName").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        emergencyName: document.getElementById("emergencyName").value.trim(),
+        emergencyPhone: document.getElementById("emergencyPhone").value.trim(),
+        slipBase64: slipBase64,
+        slipMimeType: file.type,
+        slipFileName: file.name
+      };
+
+      const response = await fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert(
+          "ลงทะเบียนสำเร็จ 🎉\n\n" +
+          "Registration ID: " + result.registrationId
+        );
+
+        form.reset();
+      } else {
+        alert(result.message || "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("ไม่สามารถส่งข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "SUBMIT REGISTRATION";
+    }
+  });
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        const base64 = reader.result.split(",")[1];
+        resolve(base64);
+      };
+
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Registration Status | Wild Camp 4</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="status-page">
+        <div class="status-container">
+
+            <a href="index.html" class="back-link">← BACK</a>
+
+            <p class="event-tag">WILD CAMP 4</p>
+
+            <h1>CHECK<br>STATUS</h1>
+
+            <p class="status-description">
+                กรอก Registration ID เพื่อตรวจสอบสถานะการลงทะเบียน
+            </p>
+
+            <div class="status-search-box">
+                <label for="registrationId">REGISTRATION ID</label>
+
+                <input
+                    type="text"
+                    id="registrationId"
+                    placeholder="เช่น WC4-0001"
+                    autocomplete="off"
+                >
+
+                <button type="button" id="checkStatusButton">
+                    CHECK STATUS
+                </button>
+            </div>
+
+            <div id="statusResult" class="status-result"></div>
+
+        </div>
+    </main>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwa8bTTKCYmLOoT17M51Wicc9cQTQ82Zl-GXM0C60MF7WMBYRLGoHmYK4hxLQq-NktW/exec";
+
+    const checkStatusButton =
+        document.getElementById("checkStatusButton");
+
+    const registrationIdInput =
+        document.getElementById("registrationId");
+
+    const statusResult =
+        document.getElementById("statusResult");
+
+    checkStatusButton.addEventListener("click", async function () {
+        const registrationId =
+            registrationIdInput.value.trim().toUpperCase();
+
+        if (!registrationId) {
+            alert("กรุณากรอก Registration ID");
+            return;
+        }
+
+        statusResult.innerHTML = "<p>กำลังตรวจสอบ...</p>";
+        checkStatusButton.disabled = true;
+
+       try {
+    
+    const response = await fetch(
+        WEB_APP_URL + "?id=" + encodeURIComponent(registrationId)
+    );
+
+    const data = await response.json();
+
+            
+
+            if (!data.success) {
+                statusResult.innerHTML =
+                    `<p>เกิดข้อผิดพลาด: ${data.message}</p>`;
+                return;
+            }
+
+            if (!data.found) {
+                statusResult.innerHTML =
+                    `<p>ไม่พบ Registration ID นี้</p>`;
+                return;
+            }
+
+            const status = String(data.status || "").toUpperCase();
+
+            let statusText = "";
+            let statusClass = "";
+ 
+            if (status === "APPROVED") {
+    statusText = "อนุมัติการลงทะเบียนแล้ว";
+    statusClass = "approved";
+} else if (status === "REJECTED") {
+    statusText = "การลงทะเบียนไม่ผ่าน";
+    statusClass = "rejected";
+} else {
+    statusText = "กำลังรอตรวจสอบ";
+    statusClass = "pending";
+}
+
+            statusResult.innerHTML = `
+                <div class="status-card">
+                    <p><strong>Registration ID:</strong> ${data.registrationId}</p>
+                    <p><strong>ชื่อ:</strong> ${data.firstName} ${data.lastName}</p>
+                    <p><strong>สถานะ:</strong> ${statusText}</p>
+                </div>
+            `;
+
+        } catch (error) {
+            console.error(error);
+            statusResult.innerHTML =
+                "<p>ไม่สามารถตรวจสอบสถานะได้ กรุณาลองใหม่อีกครั้ง</p>";
+        } finally {
+            checkStatusButton.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>

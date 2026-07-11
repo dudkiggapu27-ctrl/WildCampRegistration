@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wild Camp 4 Check-in</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="checkin-container">
+
+  <a href="index.html" class="back-link">
+    ← BACK
+  </a>
+
+  <p class="event-tag">WILD CAMP 4</p>
+
+  <h1>CHECK-IN</h1>
+
+  <p class="checkin-description">
+    กรอก Registration ID เพื่อตรวจสอบและเช็กอิน
+  </p>
+
+  <div class="checkin-box">
+    <label for="registrationId">REGISTRATION ID</label>
+
+    <input
+      type="text"
+      id="registrationId"
+      placeholder="เช่น WC4-0001"
+      autocomplete="off"
+      inputmode="none"
+    >
+
+    <button type="button" id="checkInButton">
+      CHECK-IN
+    </button>
+  </div>
+
+  <div id="message" class="checkin-message"></div>
+
+</div>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwa8bTTKCYmLOoT17M51Wicc9cQTQ82Zl-GXM0C60MF7WMBYRLGoHmYK4hxLQq-NktW/exec";
+
+    const checkInButton =
+      document.getElementById("checkInButton");
+
+    const registrationIdInput =
+      document.getElementById("registrationId");
+
+    const message =
+      document.getElementById("message");
+const urlParams = new URLSearchParams(window.location.search);
+const idFromUrl = urlParams.get("id");
+
+if (idFromUrl) {
+  registrationIdInput.value = idFromUrl;
+}
+    checkInButton.addEventListener("click", async function () {
+
+      const registrationId =
+        registrationIdInput.value.trim();
+
+      if (!registrationId) {
+        message.innerHTML =
+          "<p>กรุณากรอก Registration ID</p>";
+        return;
+      }
+
+      checkInButton.disabled = true;
+      message.innerHTML = "<p>กำลังเช็กอิน...</p>";
+
+      try {
+        const response = await fetch(WEB_APP_URL, {
+          method: "POST",
+          body: JSON.stringify({
+            action: "checkIn",
+            registrationId: registrationId
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          message.innerHTML =
+            "<p>✅ เช็กอินสำเร็จ</p>";
+        } else {
+          message.innerHTML =
+            "<p>❌ " + data.message + "</p>";
+        }
+
+      } catch (error) {
+        console.error(error);
+        message.innerHTML =
+          "<p>❌ ไม่สามารถเช็กอินได้</p>";
+      } finally {
+        checkInButton.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
