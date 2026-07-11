@@ -247,12 +247,8 @@
       const result = await response.json();
 
       if (result.success) {
-        alert(
-          "ลงทะเบียนสำเร็จ 🎉\n\n" +
-          "Registration ID: " + result.registrationId
-        );
-
-        form.reset();
+        window.location.href =
+  "success.html?id=" + encodeURIComponent(result.registrationId);
       } else {
         alert(result.message || "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
       }

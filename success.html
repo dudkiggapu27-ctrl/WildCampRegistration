@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Successful | Wild Camp 4</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .success-page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .success-box {
+      width: 100%;
+      max-width: 600px;
+      padding: 50px 30px;
+      border: 1px solid #555;
+      border-radius: 20px;
+    }
+
+    .success-box h1 {
+      color: #ff6600;
+      margin-bottom: 15px;
+    }
+
+    .registration-id {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #ff6600;
+      border-radius: 12px;
+    }
+
+    .registration-id span {
+      color: #ff6600;
+    }
+
+    .success-box p {
+      line-height: 1.8;
+    }
+
+    .status-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background: #ff6600;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="success-page">
+    <div class="success-box">
+      <h1>REGISTRATION SUCCESSFUL 🎉</h1>
+      <h2>ลงทะเบียนสำเร็จแล้ว!</h2>
+
+      <div class="registration-id">
+        Registration ID:
+        <span id="registrationId">-</span>
+      </div>
+
+      <p>
+        กรุณารอการตรวจสอบและยืนยันจากแอดมิน<br>
+        เก็บ Registration ID นี้ไว้สำหรับตรวจสอบสถานะการลงทะเบียนของคุณ
+      </p>
+
+      <a href="status.html" class="status-button">
+        CHECK REGISTRATION STATUS
+      </a>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const registrationId = params.get("id");
+
+    if (registrationId) {
+      document.getElementById("registrationId").textContent = registrationId;
+    }
+  </script>
+</body>
+</html>
