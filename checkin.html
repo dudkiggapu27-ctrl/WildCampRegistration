@@ -38,7 +38,16 @@
       CHECK-IN
     </button>
   </div>
+<div class="checkin-box">
+  <label for="staffPin">STAFF PIN</label>
 
+  <input
+    type="password"
+    id="staffPin"
+    placeholder="กรอกรหัสเจ้าหน้าที่"
+    autocomplete="off"
+  >
+</div>
   <div id="message" class="checkin-message"></div>
 
 </div>
@@ -54,7 +63,9 @@
 
     const message =
       document.getElementById("message");
-const urlParams = new URLSearchParams(window.location.search);
+const staffPinInput =
+  document.getElementById("staffPin");
+      const urlParams = new URLSearchParams(window.location.search);
 const idFromUrl = urlParams.get("id");
 
 if (idFromUrl) {
@@ -65,12 +76,18 @@ if (idFromUrl) {
       const registrationId =
         registrationIdInput.value.trim();
 
+
       if (!registrationId) {
         message.innerHTML =
           "<p>กรุณากรอก Registration ID</p>";
         return;
       }
-
+const staffPin = staffPinInput.value.trim();
+if (!staffPin) {
+  message.innerHTML =
+    "<p>❌ กรุณากรอกรหัสเจ้าหน้าที่</p>";
+  return;
+}
       checkInButton.disabled = true;
       message.innerHTML = "<p>กำลังเช็กอิน...</p>";
 
@@ -79,7 +96,8 @@ if (idFromUrl) {
           method: "POST",
           body: JSON.stringify({
             action: "checkIn",
-            registrationId: registrationId
+            registrationId: registrationId,
+            staffPin: staffPin
           })
         });
 
