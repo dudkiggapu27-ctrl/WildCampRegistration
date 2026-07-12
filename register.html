@@ -236,7 +236,8 @@
         emergencyPhone: document.getElementById("emergencyPhone").value.trim(),
         slipBase64: slipBase64,
         slipMimeType: file.type,
-        slipFileName: file.name
+        slipFileName: file.name,
+        isTest: true
       };
 
       const response = await fetch(WEB_APP_URL, {
